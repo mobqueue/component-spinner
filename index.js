@@ -76,6 +76,8 @@ function createDiv() {
   document.body.appendChild(frag);
 
   window.addEventListener('resize', setPadding, false);
+
+  return div;
 }
 
 /**
