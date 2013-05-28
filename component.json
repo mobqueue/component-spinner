@@ -1,0 +1,19 @@
+{
+  "name": "component-spinner",
+  "repo": "mobqueue/component-spinner",
+  "description": "Spinner",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "trevorgerhardt/spin.js": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "style.css"
+  ]
+}
