@@ -1,5 +1,5 @@
 
-build: components index.js component-spinner.css
+build: components index.js style.css
 	@component build --dev
 
 components: component.json

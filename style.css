@@ -1,13 +1,15 @@
 
-.component-spinner {
-  position: absolute;
+#component-spinner {
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.2);
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  height: 100%;
-  padding-top: 50%;
-  padding-left: 50%;
-  z-index: 2000000000;
+  z-index: 20000;
+  -webkit-filter: none;
+  -moz-filter: none;
+  -ms-filter: none;
+  -o-filter: none;
+  filter: none;
 }

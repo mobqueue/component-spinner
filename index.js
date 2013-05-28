@@ -21,7 +21,7 @@ var opts = {
   trail: 60, // Afterglow percentage
   shadow: false, // Whether to render a shadow
   hwaccel: true, // Whether to use hardware acceleration
-  className: 'component-spinner', // The CSS class to assign to the spinner
+  className: 'component-spinner-inner', // The CSS class to assign to the spinner
   zIndex: 2e9, // The z-index (defaults to 2000000000)
   top: 'auto', // Top position relative to parent in px
   left: 'auto' // Left position relative to parent in px
@@ -34,6 +34,7 @@ var opts = {
 var frag = document.createDocumentFragment()
   , div = document.createElement('div');
 
+div.id = 'component-spinner';
 div.style.display = 'none';
 frag.appendChild(div);
 document.body.appendChild(frag);
@@ -50,7 +51,12 @@ var spinner = new Spinner(opts);
 
 function start(timeout) {
   spinner.spin(div);
+
+  div.style['padding-top'] = div.style.height = window.innerHeight / 2;
+  div.style['padding-left'] = div.style.width = window.innerWidth / 2;
+
   div.style.display = '';
+
   if (timeout) {
     setTimeout(stop, timeout);
   }
@@ -62,6 +68,7 @@ function start(timeout) {
 
 function stop() {
   spinner.stop();
+
   div.style.display = 'none';
 }
 
