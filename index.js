@@ -34,12 +34,10 @@ var opts = {
  */
 
 function start(timeout) {
-  if (!spinner || !div) createSpinner();
+  if (!div) div = createDiv();
+  if (!spinner) spinner = createSpinner();
 
   spinner.spin(div);
-
-  div.style['padding-top'] = div.style.height = window.innerHeight / 2;
-  div.style['padding-left'] = div.style.width = window.innerWidth / 2;
 
   div.style.display = '';
 
@@ -53,7 +51,8 @@ function start(timeout) {
  */
 
 function stop() {
-  if (!spinner || !div) createSpinner();
+  if (!div) div = createDiv();
+  if (!spinner) spinner = createSpinner();
 
   spinner.stop();
 
@@ -61,19 +60,39 @@ function stop() {
 }
 
 /**
- * Create spinner
+ * Create div
  */
 
-function createSpinner() {
+function createDiv() {
   var frag = document.createDocumentFragment();
   
   div = document.createElement('div');
   div.id = 'component-spinner';
   div.style.display = 'none';
   frag.appendChild(div);
+
+  setPadding();
+
   document.body.appendChild(frag);
 
-  spinner = new Spinner(opts);
+  window.addEventListener('resize', setPadding, false);
+}
+
+/**
+ * Set padding
+ */
+
+function setPadding() {
+  div.style['padding-top'] = div.style.height = window.innerHeight / 2;
+  div.style['padding-left'] = div.style.width = window.innerWidth / 2;
+}
+
+/**
+ * Create spinner
+ */
+
+function createSpinner() {
+  return new Spinner(opts);
 }
 
 /**
