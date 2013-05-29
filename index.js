@@ -56,8 +56,8 @@ function start(timeout) {
  */
 
 function stop() {
-  spinner.stop();
-  document.getElementById('component-spinner').remove();
+  var el = document.getElementById('component-spinner');
+  el && el.parentNode.removeChild(el);
 }
 
 /**
