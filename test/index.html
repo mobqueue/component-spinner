@@ -10,6 +10,13 @@
 
     spin.start();
 
+    setTimeout(function() {
+      spin.stop();
+      setTimeout(function() {
+        spin.start();
+      }, 1000);
+    }, 1000);
+
     </script>
   </body>
 </html>

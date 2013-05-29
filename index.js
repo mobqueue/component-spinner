@@ -3,9 +3,14 @@
  * Dependencies
  */
 
-var Spinner = require('spin.js')
-  , spinner = null
-  , div = null;
+var Spinner = require('spin.js');
+
+/**
+ * Expose `start` and `stop`
+ */
+
+module.exports.start = start;
+module.exports.stop = stop;
 
 /**
  * Spinner options
@@ -30,17 +35,17 @@ var opts = {
 };
 
 /**
+ * Create the spinner
+ */
+
+var spinner = new Spinner(opts);
+
+/**
  * Start
  */
 
 function start(timeout) {
-  if (!div) div = createDiv();
-  if (!spinner) spinner = createSpinner();
-
-  spinner.spin(div);
-
-  div.style.display = '';
-
+  spinner.spin(createDiv());
   if (timeout) {
     setTimeout(stop, timeout);
   }
@@ -51,12 +56,8 @@ function start(timeout) {
  */
 
 function stop() {
-  if (!div) div = createDiv();
-  if (!spinner) spinner = createSpinner();
-
   spinner.stop();
-
-  div.style.display = 'none';
+  document.getElementById('component-spinner').remove();
 }
 
 /**
@@ -66,40 +67,14 @@ function stop() {
 function createDiv() {
   var frag = document.createDocumentFragment();
   
-  div = document.createElement('div');
+  var div = document.createElement('div');
   div.id = 'component-spinner';
-  div.style.display = 'none';
   frag.appendChild(div);
 
-  setPadding();
+  div.style.height = window.innerHeight;
+  div.style.width = window.innerWidth;
 
   document.body.appendChild(frag);
 
-  window.addEventListener('resize', setPadding, false);
-
   return div;
 }
-
-/**
- * Set padding
- */
-
-function setPadding() {
-  div.style['padding-top'] = div.style.height = window.innerHeight / 2;
-  div.style['padding-left'] = div.style.width = window.innerWidth / 2;
-}
-
-/**
- * Create spinner
- */
-
-function createSpinner() {
-  return new Spinner(opts);
-}
-
-/**
- * Expose `start` and `stop`
- */
-
-module.exports.start = start;
-module.exports.stop = stop;
